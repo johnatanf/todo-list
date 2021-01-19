@@ -9,13 +9,13 @@ const App = () => {
       id: uuid(),
       task: 'Water the plants',
       dueDate: '2012-11-11',
-      priority: 'important'
+      priority: 'high priority'
     },
     {
       id: uuid(),
       task: 'Eat the last cookie',
       dueDate: '2021-11-11',
-      priority: 'not important'
+      priority: 'low priority'
     }
   ])
   const [todoInput, setTodoInput] = useState('')
@@ -26,7 +26,7 @@ const App = () => {
       id: uuid(),
       task: todoInput,
       dueDate: '2020',
-      priority: 'important'
+      priority: 'medium priority'
     })) 
     setTodoInput('')
   }
@@ -34,17 +34,24 @@ const App = () => {
   const handleTodoDelete = id => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
+
+  const handlePriorityChange = (id, priority) => {
+    const editedTodo = todos.find(todo => todo.id === id)
+    editedTodo.priority = priority
+    setTodos(todos.map(todo => todo.id === id ? editedTodo : todo))
+  }
   
   return (
     <div>
       <CreateTodo 
-        todoInput={todoInput} 
-        setTodoInput={setTodoInput} 
+        todoInput={todoInput}
+        setTodoInput={setTodoInput}
         handleTodoSubmit={handleTodoSubmit}
       />
       <Todos 
         todos={todos} 
         handleTodoDelete={handleTodoDelete}
+        handlePriorityChange={handlePriorityChange}
       />
     </div>
   );
