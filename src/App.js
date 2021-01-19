@@ -19,16 +19,33 @@ const App = () => {
     }
   ])
   const [todoInput, setTodoInput] = useState('')
+
+  const handleTodoSubmit = event => {
+    event.preventDefault()
+    setTodos(todos.concat({
+      id: uuid(),
+      task: todoInput,
+      dueDate: '2020',
+      priority: 'important'
+    })) 
+    setTodoInput('')
+  }
+
+  const handleTodoDelete = id => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
   
   return (
     <div>
       <CreateTodo 
         todoInput={todoInput} 
         setTodoInput={setTodoInput} 
-        todos={todos}
-        setTodos={setTodos}
+        handleTodoSubmit={handleTodoSubmit}
       />
-      <Todos todos={todos} />
+      <Todos 
+        todos={todos} 
+        handleTodoDelete={handleTodoDelete}
+      />
     </div>
   );
 }

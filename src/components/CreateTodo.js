@@ -1,7 +1,6 @@
 import React from 'react'
-import { v4 as uuid } from 'uuid'
 
-const CreateTodo = ({ todoInput, setTodoInput, todos, setTodos }) => {
+const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
   const placeholders = [
     'Do the groceries...',
@@ -10,20 +9,9 @@ const CreateTodo = ({ todoInput, setTodoInput, todos, setTodos }) => {
     'Water the plants...',
     'Replace lightbulb...'
   ]
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    setTodos(todos.concat({
-      id: uuid(),
-      task: todoInput,
-      dueDate: '2020',
-      priority: 'important'
-    })) 
-    setTodoInput('')
-  }
   
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleTodoSubmit}>
       <input 
         name='todoInput'
         value={todoInput}
