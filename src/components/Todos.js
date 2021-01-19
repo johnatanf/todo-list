@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Todo = ({ todo }) => {
   return (
     <li>
-      <p>{todo.task}</p>
+      {todo.task} <button>delete</button>
     </li>
   );
 }
@@ -12,7 +12,7 @@ const Todos = ({ todos }) => {
   return (
     <ul>
       {todos.map(todo => (
-        <Todo todo={todo}/>
+        <Todo key={todo.id} todo={todo}/>
       )
       )}
     </ul>
