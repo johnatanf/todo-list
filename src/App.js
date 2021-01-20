@@ -1,29 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 import Notification from './components/Notification'
 import Todos from './components/Todos'
 import CreateTodo from './components/CreateTodo'
 
 const App = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: uuid(),
-      task: 'Water the plants',
-      dueDate: '2012-11-11',
-      priority: 'high priority',
-      completed: false
-    },
-    {
-      id: uuid(),
-      task: 'Eat the last cookie',
-      dueDate: '2021-11-11',
-      priority: 'low priority',
-      completed: false
-    }
-  ])
+  const [todos, setTodos] = useState([])
   const [todoInput, setTodoInput] = useState('')
   const [notification, setNotification] = useState('')
   const [notificationTimerId, setNotificationTimerId] = useState('')
+
+  useEffect(() => { // effect to retrieve todos if they already exist in local storage 
+    const todos = localStorage.getItem('todos')
+    if(todos && JSON.parse(todos) instanceof Array) {
+      setTodos(JSON.parse(todos))
+    } else {
+      localStorage.setItem('todos', JSON.stringify([]))
+    }
+  }, [])
+
+  useEffect(() => { // effect to save todos to storage whenever a change is made 
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   const handleTodoSubmit = event => {
     event.preventDefault()
