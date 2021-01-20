@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const NotificationStyle = styled.div`
+const StyledNotification = styled.div`
   position: relative;
   top: 0px;
   margin: 0 auto;
@@ -10,9 +10,9 @@ const NotificationStyle = styled.div`
 
 const Notification = ({ notification }) => {
   return (
-    <NotificationStyle>
+    <StyledNotification>
       {notification}
-    </NotificationStyle>
+    </StyledNotification>
   )
 }
 

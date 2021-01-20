@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
 import Notification from './components/Notification'
-import Todos from './components/Todos'
-import CreateTodo from './components/CreateTodo'
-import styled from 'styled-components'
-
-const Card = styled.div`
-  border: 1px solid black;
-  background: white;
-  margin-top: 50px;
-  width: 45%;
-  min-width: 320px;
-  max-width: 350px;
-`
+import Card from './components/Card'
 
 const App = () => {
   const [todos, setTodos] = useState([])
@@ -73,25 +62,21 @@ const App = () => {
     }, 5000)
     setNotificationTimerId(timerId)
   }
-  
+
   return (
     <div>
       <Notification 
         notification={notification}
       />
-      <Card>
-        <CreateTodo 
-          todoInput={todoInput}
-          setTodoInput={setTodoInput}
-          handleTodoSubmit={handleTodoSubmit}
-        />
-        <Todos 
-          todos={todos} 
-          handleTodoDelete={handleTodoDelete}
-          handlePriorityChange={handlePriorityChange}
-          toggleCompleted={toggleCompleted}
-        />
-      </Card>
+      <Card
+        todos={todos}
+        todoInput={todoInput}
+        setTodoInput={setTodoInput}
+        handleTodoSubmit={handleTodoSubmit}
+        handleTodoDelete={handleTodoDelete}
+        handlePriorityChange={handlePriorityChange}
+        toggleCompleted={toggleCompleted}
+      />
     </div>
   );
 }

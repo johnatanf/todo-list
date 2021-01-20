@@ -1,6 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
 
+const StyledInput = styled.input`
+  width: 100%;
+  font-family: Concert One;
+  font-size: 16px;
+  padding: 25px;
+  border: 0;
+  height: 50px;
+  box-sizing: border-box;
 
+  &:focus {
+    outline: 2px solid lightgrey;
+  }
+`
 
 const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
@@ -14,7 +27,7 @@ const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
   return (
     <form onSubmit={handleTodoSubmit}>
-      <input 
+      <StyledInput 
         name='todoInput'
         value={todoInput}
         placeholder={placeholders[Math.floor(Math.random() * placeholders.length)]}
