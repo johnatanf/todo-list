@@ -3,6 +3,16 @@ import { v4 as uuid } from 'uuid'
 import Notification from './components/Notification'
 import Todos from './components/Todos'
 import CreateTodo from './components/CreateTodo'
+import styled from 'styled-components'
+
+const Card = styled.div`
+  border: 1px solid black;
+  background: white;
+  margin-top: 50px;
+  width: 45%;
+  min-width: 320px;
+  max-width: 350px;
+`
 
 const App = () => {
   const [todos, setTodos] = useState([])
@@ -69,17 +79,19 @@ const App = () => {
       <Notification 
         notification={notification}
       />
-      <CreateTodo 
-        todoInput={todoInput}
-        setTodoInput={setTodoInput}
-        handleTodoSubmit={handleTodoSubmit}
-      />
-      <Todos 
-        todos={todos} 
-        handleTodoDelete={handleTodoDelete}
-        handlePriorityChange={handlePriorityChange}
-        toggleCompleted={toggleCompleted}
-      />
+      <Card>
+        <CreateTodo 
+          todoInput={todoInput}
+          setTodoInput={setTodoInput}
+          handleTodoSubmit={handleTodoSubmit}
+        />
+        <Todos 
+          todos={todos} 
+          handleTodoDelete={handleTodoDelete}
+          handlePriorityChange={handlePriorityChange}
+          toggleCompleted={toggleCompleted}
+        />
+      </Card>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
   const placeholders = [
@@ -17,6 +19,7 @@ const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
         value={todoInput}
         placeholder={placeholders[Math.floor(Math.random() * placeholders.length)]}
         onChange={event => setTodoInput(event.target.value)}
+        autoComplete='off'
       />
     </form>
   )
