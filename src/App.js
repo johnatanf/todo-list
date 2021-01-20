@@ -47,6 +47,12 @@ const App = () => {
     setTodos(todos.map(todo => todo.id === id ? editedTodo : todo))
   }
 
+  const toggleCompleted = id => {
+    const editedTodo = todos.find(todo => todo.id === id)
+    editedTodo.completed = !editedTodo.completed
+    setTodos(todos.map(todo => todo.id === id ? editedTodo : todo))
+  }
+
   const flashNotification = notification => {
     if(notificationTimerId) {
       clearTimeout(notificationTimerId)
@@ -72,6 +78,7 @@ const App = () => {
         todos={todos} 
         handleTodoDelete={handleTodoDelete}
         handlePriorityChange={handlePriorityChange}
+        toggleCompleted={toggleCompleted}
       />
     </div>
   );
