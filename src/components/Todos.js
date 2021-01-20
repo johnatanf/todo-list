@@ -1,5 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const todoColourFade = keyframes`
+  from {
+    background-color: white;
+  }
+
+  to {
+    background-color: #fafafa;
+  }
+`
+
+const trashColourFade = keyframes`
+  from {
+    color: black;
+  }
+
+  to {
+    color: red;
+  }
+`
 
 const List = styled.li`
   margin: 0 auto;
@@ -11,7 +31,11 @@ const List = styled.li`
   font-family: Concert One;
   font-size: 16px;
   padding: 20px;
-  border-top: 1px solid black; 
+  border-top: 1px solid black;
+  
+  &:hover {
+    animation: ${todoColourFade} 0.1s forwards;
+  }
 `
 
 const Task = styled.span`
@@ -20,7 +44,9 @@ const Task = styled.span`
 `
 
 const Delete = styled.i`
-  
+  &:hover {
+    animation: ${trashColourFade} 0.1s forwards;
+  }
 `
 
 const Todo = ({ todo, handleTodoDelete, handlePriorityChange, toggleCompleted }) => {
