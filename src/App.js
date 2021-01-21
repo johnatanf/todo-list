@@ -25,15 +25,19 @@ const App = () => {
 
   const handleTodoSubmit = event => {
     event.preventDefault()
-    setTodos(todos.concat({
-      id: uuid(),
-      task: todoInput,
-      dueDate: '09:00',
-      priority: 'medium priority',
-      completed: false
-    })) 
-    setTodoInput('')
-    flashNotification('successfully created todo!')
+    if(todoInput) {
+      setTodos(todos.concat({
+        id: uuid(),
+        task: todoInput,
+        dueDate: '09:00',
+        priority: 'low priority',
+        completed: false
+      })) 
+      setTodoInput('')
+      flashNotification('successfully created todo!')
+    } else {
+      flashNotification('the todo field cannot be blank')
+    }
   }
 
   const handleTodoDelete = id => {
