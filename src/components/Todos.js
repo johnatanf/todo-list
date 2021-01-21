@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoSettings from './TodoSettings'
 import styled, { keyframes } from 'styled-components'
 
 const todoColourFade = keyframes`
@@ -58,11 +59,7 @@ const Todo = ({ todo, handleTodoDelete, handlePriorityChange, toggleCompleted })
         defaultChecked={ todo.completed ? true : false }
       />
       <Task>{todo.task}</Task>
-      <select defaultValue={todo.priority} onChange={event => handlePriorityChange(todo.id, event.target.value)}>
-        <option value='high priority'>high priority</option>
-        <option value='medium priority'>medium priority</option>
-        <option value='low priority'>low priority</option>
-      </select>
+      <TodoSettings todo={todo} handlePriorityChange={handlePriorityChange} />
       <Delete className="fas fa-trash-alt" onClick={() => handleTodoDelete(todo.id)}>
       </Delete>
     </List>
