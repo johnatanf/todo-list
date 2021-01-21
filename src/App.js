@@ -27,7 +27,7 @@ const App = () => {
     setTodos(todos.concat({
       id: uuid(),
       task: todoInput,
-      dueDate: '08:30',
+      dueDate: '09:00',
       priority: 'medium priority',
       completed: false
     })) 
