@@ -96,7 +96,7 @@ const Todos = ({ todos, sorter, handleTodoDelete, handlePriorityChange, handleDu
   return (
     <ul>
       {todos
-        .sort(sorter === 'priority' ? sortByPriority : sorter === 'due date' ? sortByDueDate : '')
+        .sort(sorter === 'priority' ? sortByPriority : sorter === 'due date' ? sortByDueDate : undefined)
         .map(todo => (
           <Todo 
             key={todo.id} 
