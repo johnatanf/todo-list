@@ -66,19 +66,47 @@ const Todo = ({ todo, handleTodoDelete, handlePriorityChange, handleDueDateChang
   )
 }
 
-const Todos = ({ todos, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
+const Todos = ({ todos, sorter, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
+  
+  console.log(todos)
+
+  const sortByPriority = (a, b) => {
+    const categories = ['high priority', 'medium priority', 'low priority']
+    const indexA = categories.indexOf(a.priority)
+    const indexB = categories.indexOf(b.priority)
+    if (indexA > indexB) {
+      return 1
+    } else if (indexA < indexB) {
+      return -1 
+    } else {
+      return 0
+    }
+  }
+
+  const sortByDueDate = (a, b) => {
+    if (a.dueDate > b.dueDate) {
+      return 1 
+    } else if (a.dueDate < b.dueDate) {
+      return -1
+    } else {
+      return 0
+    }
+  }
+  
   return (
     <ul>
-      {todos.map(todo => (
-        <Todo 
-          key={todo.id} 
-          todo={todo}
-          handleTodoDelete={handleTodoDelete}
-          handlePriorityChange={handlePriorityChange}
-          handleDueDateChange={handleDueDateChange}
-          toggleCompleted={toggleCompleted}
-        />
-      )
+      {todos
+        .sort(sorter === 'priority' ? sortByPriority : sorter === 'due date' ? sortByDueDate : '')
+        .map(todo => (
+          <Todo 
+            key={todo.id} 
+            todo={todo}
+            handleTodoDelete={handleTodoDelete}
+            handlePriorityChange={handlePriorityChange}
+            handleDueDateChange={handleDueDateChange}
+            toggleCompleted={toggleCompleted}
+          />
+        )
       )}
     </ul>
   )

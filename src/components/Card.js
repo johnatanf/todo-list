@@ -1,5 +1,6 @@
 import React from 'react'
 import CardHeading from './CardHeading'
+import Sorter from './Sorter'
 import CreateTodo from './CreateTodo'
 import Todos from './Todos'
 import styled from 'styled-components'
@@ -14,7 +15,7 @@ const StyledCard = styled.div`
   max-width: 400px;
 `
 
-const Card = ({todos, todoInput, setTodoInput, handleTodoSubmit, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted}) => {  
+const Card = ({todos, todoInput, sorter, setSorter, setTodoInput, handleTodoSubmit, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted}) => {  
   return (
     <StyledCard>
       <CardHeading />
@@ -23,8 +24,13 @@ const Card = ({todos, todoInput, setTodoInput, handleTodoSubmit, handleTodoDelet
         setTodoInput={setTodoInput}
         handleTodoSubmit={handleTodoSubmit}
       />
+      <Sorter 
+        sorter={sorter}
+        setSorter={setSorter}
+      />
       <Todos 
-        todos={todos} 
+        todos={todos}
+        sorter={sorter} 
         handleTodoDelete={handleTodoDelete}
         handlePriorityChange={handlePriorityChange}
         handleDueDateChange={handleDueDateChange}

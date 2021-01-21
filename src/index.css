@@ -30,6 +30,7 @@ time, mark, audio, video {
 body {
     line-height:1;
     background: linear-gradient(90deg, #56ab2f, #a8e063);
+    background-repeat: 'no repeat';
 }
 
 article,aside,details,figcaption,figure,

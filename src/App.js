@@ -8,6 +8,7 @@ const App = () => {
   const [todoInput, setTodoInput] = useState('')
   const [notification, setNotification] = useState('')
   const [notificationTimerId, setNotificationTimerId] = useState('')
+  const [sorter, setSorter] = useState('priority')
 
   useEffect(() => { // effect to retrieve todos if they already exist in local storage 
     const todos = localStorage.getItem('todos')
@@ -77,6 +78,8 @@ const App = () => {
       <Card
         todos={todos}
         todoInput={todoInput}
+        sorter={sorter}
+        setSorter={setSorter}
         setTodoInput={setTodoInput}
         handleTodoSubmit={handleTodoSubmit}
         handleTodoDelete={handleTodoDelete}
