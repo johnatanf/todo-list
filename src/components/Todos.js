@@ -50,7 +50,7 @@ const Delete = styled.i`
   }
 `
 
-const Todo = ({ todo, handleTodoDelete, handlePriorityChange, toggleCompleted }) => {
+const Todo = ({ todo, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
   return (
     <List>
       <input 
@@ -59,14 +59,14 @@ const Todo = ({ todo, handleTodoDelete, handlePriorityChange, toggleCompleted })
         defaultChecked={ todo.completed ? true : false }
       />
       <Task>{todo.task}</Task>
-      <TodoSettings todo={todo} handlePriorityChange={handlePriorityChange} />
+      <TodoSettings todo={todo} handlePriorityChange={handlePriorityChange} handleDueDateChange={handleDueDateChange} />
       <Delete className="fas fa-trash-alt" onClick={() => handleTodoDelete(todo.id)}>
       </Delete>
     </List>
   )
 }
 
-const Todos = ({ todos, handleTodoDelete, handlePriorityChange, toggleCompleted }) => {
+const Todos = ({ todos, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
   return (
     <ul>
       {todos.map(todo => (
@@ -75,6 +75,7 @@ const Todos = ({ todos, handleTodoDelete, handlePriorityChange, toggleCompleted 
           todo={todo}
           handleTodoDelete={handleTodoDelete}
           handlePriorityChange={handlePriorityChange}
+          handleDueDateChange={handleDueDateChange}
           toggleCompleted={toggleCompleted}
         />
       )

@@ -48,7 +48,7 @@ const Exclamation = styled.i`
   color: red;
 `
 
-const TodoSettings = ({ todo, handlePriorityChange }) => {
+const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
   return (
     <StyledTodoSettings>
       <div>
@@ -59,7 +59,7 @@ const TodoSettings = ({ todo, handlePriorityChange }) => {
           <option value='low priority'>low</option>
         </StyledPriorityMenu>
       </div>
-      <StyledTime type='time' defaultValue="09:00"/>
+      <StyledTime type='time' defaultValue={todo.dueDate} onChange={event => handleDueDateChange(todo.id, event.target.value)}/>
     </StyledTodoSettings>
   )
 }

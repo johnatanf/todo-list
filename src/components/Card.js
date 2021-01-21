@@ -14,7 +14,7 @@ const StyledCard = styled.div`
   max-width: 400px;
 `
 
-const Card = ({todos, todoInput, setTodoInput, handleTodoSubmit, handleTodoDelete, handlePriorityChange, toggleCompleted}) => {  
+const Card = ({todos, todoInput, setTodoInput, handleTodoSubmit, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted}) => {  
   return (
     <StyledCard>
       <CardHeading />
@@ -27,6 +27,7 @@ const Card = ({todos, todoInput, setTodoInput, handleTodoSubmit, handleTodoDelet
         todos={todos} 
         handleTodoDelete={handleTodoDelete}
         handlePriorityChange={handlePriorityChange}
+        handleDueDateChange={handleDueDateChange}
         toggleCompleted={toggleCompleted}
       />      
     </StyledCard>

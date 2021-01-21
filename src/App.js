@@ -27,7 +27,7 @@ const App = () => {
     setTodos(todos.concat({
       id: uuid(),
       task: todoInput,
-      dueDate: '2020',
+      dueDate: '08:30',
       priority: 'medium priority',
       completed: false
     })) 
@@ -43,6 +43,12 @@ const App = () => {
   const handlePriorityChange = (id, priority) => {
     const editedTodo = todos.find(todo => todo.id === id)
     editedTodo.priority = priority
+    setTodos(todos.map(todo => todo.id === id ? editedTodo : todo))
+  }
+
+  const handleDueDateChange = (id, dueDate) => {
+    const editedTodo = todos.find(todo => todo.id === id)
+    editedTodo.dueDate = dueDate
     setTodos(todos.map(todo => todo.id === id ? editedTodo : todo))
   }
 
@@ -75,6 +81,7 @@ const App = () => {
         handleTodoSubmit={handleTodoSubmit}
         handleTodoDelete={handleTodoDelete}
         handlePriorityChange={handlePriorityChange}
+        handleDueDateChange={handleDueDateChange}
         toggleCompleted={toggleCompleted}
       />
     </div>
