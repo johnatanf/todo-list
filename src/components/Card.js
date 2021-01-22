@@ -1,5 +1,6 @@
 import React from 'react'
 import CardHeading from './CardHeading'
+import CardFooter from './CardFooter'
 import Sorter from './Sorter'
 import CreateTodo from './CreateTodo'
 import Todos from './Todos'
@@ -7,7 +8,7 @@ import styled from 'styled-components'
 
 const StyledCard = styled.div`
   box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
   margin: 80px auto 35px auto;
   width: 45%;
   min-width: 350px;
@@ -34,7 +35,8 @@ const Card = ({todos, todoInput, sorter, setSorter, setTodoInput, handleTodoSubm
         handlePriorityChange={handlePriorityChange}
         handleDueDateChange={handleDueDateChange}
         toggleCompleted={toggleCompleted}
-      />      
+      />
+      <CardFooter todos={todos} /> 
     </StyledCard>
   )
 }
