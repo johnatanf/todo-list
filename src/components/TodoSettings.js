@@ -45,14 +45,22 @@ const StyledTime = styled.input`
 
 const Exclamation = styled.i`
   margin-right: 5px;
-  color: red;
+  color: ${({ priority }) => 
+    priority === 'high priority'
+    ? '#ff4d4d'
+    : priority === 'medium priority'
+    ? '#ffb624'
+    : priority === 'low priority'
+    ? '#32a6a8'
+    : ''
+  };
 `
 
 const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
   return (
     <StyledTodoSettings>
       <div>
-        <Exclamation className="fas fa-exclamation"></Exclamation>
+        <Exclamation priority={todo.priority} className="fas fa-exclamation"></Exclamation>
         <StyledPriorityMenu defaultValue={todo.priority} onChange={event => handlePriorityChange(todo.id, event.target.value)}>
           <option value='high priority'>high</option>
           <option value='medium priority'>medium</option>
