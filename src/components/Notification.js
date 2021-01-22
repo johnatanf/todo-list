@@ -1,16 +1,14 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
+import { Transition } from 'react-transition-group'
 
 const StyledContainer = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  margin-top: 20px;
 `
 
 const StyledNotification = styled.div`
-  display: ${props => props.notification ? 'block' : 'none'};
-  margin: 0 auto;
   width: 50%;
   min-width: 160px;
   max-width: 250px;
@@ -23,12 +21,23 @@ const StyledNotification = styled.div`
   background: white;
 `
 
-const Notification = ({ notification }) => {
+const StyledNotificationAnimation = styled(StyledNotification)`
+  transition: 0.5s;
+  margin: ${({ state }) => state === 'entering' || state === 'entered' ? '30px' : '-30px'} auto;
+  opacity: ${({ state }) => state === 'entering' || state === 'entered' ? '1' : '0'};
+`
+
+const Notification = ({ notification, animateNotification }) => {
+  
   return (
     <StyledContainer>
-      <StyledNotification notification={notification}>
-        {notification}
-      </StyledNotification>
+      <Transition in={animateNotification} timeout={500}>
+        {(state) => (
+          <StyledNotificationAnimation state={state}>
+            {notification}
+          </StyledNotificationAnimation>
+        )}
+      </Transition>
     </StyledContainer>
   )
 }

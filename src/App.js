@@ -8,7 +8,8 @@ const App = () => {
   const [todoInput, setTodoInput] = useState('')
   const [notification, setNotification] = useState('')
   const [notificationTimerId, setNotificationTimerId] = useState('')
-  const [sorter, setSorter] = useState('priority')
+  const [animateNotification, setAnimateNotification] = useState(false)
+  const [sorter, setSorter] = useState('priority')  
 
   useEffect(() => { // effect to retrieve todos if they already exist in local storage 
     const todos = localStorage.getItem('todos')
@@ -68,8 +69,10 @@ const App = () => {
       clearTimeout(notificationTimerId)
     }
     setNotification(notification)
+    setAnimateNotification(true)
     const timerId = setTimeout(() => {
       setNotification('')
+      setAnimateNotification(false)
     }, 5000)
     setNotificationTimerId(timerId)
   }
@@ -78,6 +81,7 @@ const App = () => {
     <div>
       <Notification 
         notification={notification}
+        animateNotification={animateNotification}
       />
       <Card
         todos={todos}
