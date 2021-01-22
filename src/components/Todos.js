@@ -35,7 +35,6 @@ const StyledList = styled.li`
   padding: 20px;
   border-top: 1px solid black;
   background: white;
-  opacity: ${props => props.todo.completed ? '0.7' : '1'}; 
   
   &:hover {
     animation: ${props => !props.todo.completed ? css`${todoColourFade} 0.1s forwards` : ''};
@@ -44,7 +43,15 @@ const StyledList = styled.li`
 
 const StyledListAnimation = styled(StyledList)`
   transition: 0.5s;
-  opacity: ${({ state }) => state === 'entering' ? '0.1' : state === 'entered' ? '1' : '0' };
+  opacity: ${({ state, todo }) => 
+    state === 'entering' 
+    ? '0.1' 
+    : state === 'entered' && todo.completed 
+    ? '0.7' 
+    : state === 'entered' 
+    ? '1' 
+    : '0' 
+  };
 `
 
 const StyledTask = styled.span`
