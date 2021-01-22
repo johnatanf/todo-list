@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import TodoSettings from './TodoSettings'
 import styled, { keyframes, css } from 'styled-components'
+import { Transition } from 'react-transition-group'
 
 const todoColourFade = keyframes`
   from {
@@ -22,7 +23,7 @@ const trashColourFade = keyframes`
   }
 `
 
-const List = styled.li`
+const StyledList = styled.li`
   margin: 0 auto;
   padding: 0;
   list-style-type: none;
@@ -34,42 +35,60 @@ const List = styled.li`
   padding: 20px;
   border-top: 1px solid black;
   background: white;
-  opacity: ${props => props.todo.completed ? '70%' : '100%'};
+  opacity: ${props => props.todo.completed ? '0.7' : '1'}; 
   
   &:hover {
-    animation: ${props => !props.todo.completed ? css`${todoColourFade} 0.1s forwards` : ''}
+    animation: ${props => !props.todo.completed ? css`${todoColourFade} 0.1s forwards` : ''};
   }
 `
 
-const Task = styled.span`
+const StyledListAnimation = styled(StyledList)`
+  transition: 0.5s;
+  opacity: ${({ state }) => state === 'entering' ? '0.1' : state === 'entered' ? '1' : '0' };
+`
+
+const StyledTask = styled.span`
   width: 50%;
   word-wrap: break-word;
   text-decoration: ${props => props.todo.completed ? 'line-through' : ''}
 `
 
-const Delete = styled.i`
+const StyledDelete = styled.i`
   &:hover {
     animation: ${trashColourFade} 0.1s forwards;
   }
 `
 
-const Todo = ({ todo, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
+const Todo = (props) => {
+  
+  const [animateTodo, setAnimateTodo] = useState(false)
+
+  useEffect(() => {
+    if(!animateTodo) {
+      setAnimateTodo(true)
+    }
+  }, [animateTodo])
+  
   return (
-    <List todo={todo}>
-      <input 
-        type='checkbox' 
-        onClick={() => toggleCompleted(todo.id)}
-        defaultChecked={ todo.completed ? true : false }
-      />
-      <Task todo={todo}>{todo.task}</Task>
-      <TodoSettings todo={todo} handlePriorityChange={handlePriorityChange} handleDueDateChange={handleDueDateChange} />
-      <Delete className="fas fa-trash-alt" onClick={() => handleTodoDelete(todo.id)}>
-      </Delete>
-    </List>
+    <Transition in={animateTodo} timeout={0}>
+      {(state) => (
+        <StyledListAnimation todo={props.todo} state={state}>
+          <input 
+            type='checkbox' 
+            onClick={() => props.toggleCompleted(props.todo.id)}
+            defaultChecked={ props.todo.completed ? true : false } 
+          />
+          <StyledTask todo={props.todo}>{props.todo.task}</StyledTask>
+          <TodoSettings todo={props.todo} handlePriorityChange={props.handlePriorityChange} handleDueDateChange={props.handleDueDateChange} />
+          <StyledDelete className="fas fa-trash-alt" onClick={() => props.handleTodoDelete(props.todo.id)}>
+          </StyledDelete>
+        </StyledListAnimation>
+      )}
+    </Transition>
   )
 }
 
-const Todos = ({ todos, sorter, handleTodoDelete, handlePriorityChange, handleDueDateChange, toggleCompleted }) => {
+const Todos = (props) => {
 
   const sortByPriority = (a, b) => {
     const categories = ['high priority', 'medium priority', 'low priority']
@@ -109,17 +128,17 @@ const Todos = ({ todos, sorter, handleTodoDelete, handlePriorityChange, handleDu
   
   return (
     <ul>
-      {todos
-        .sort(sorter === 'priority' ? sortByPriority : sorter === 'due date' ? sortByDueDate : undefined)
+      {props.todos
+        .sort(props.sorter === 'priority' ? sortByPriority : props.sorter === 'due date' ? sortByDueDate : undefined)
         .sort(sortByCompleted)
         .map(todo => (
           <Todo 
             key={todo.id} 
             todo={todo}
-            handleTodoDelete={handleTodoDelete}
-            handlePriorityChange={handlePriorityChange}
-            handleDueDateChange={handleDueDateChange}
-            toggleCompleted={toggleCompleted}
+            handleTodoDelete={props.handleTodoDelete}
+            handlePriorityChange={props.handlePriorityChange}
+            handleDueDateChange={props.handleDueDateChange}
+            toggleCompleted={props.toggleCompleted}
           />
         )
       )}
