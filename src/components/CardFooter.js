@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledFooter = styled.div`
   padding: 10px 25px;
-  font-family: Concert One;
+  font-family: Concert One, Open Sans, sans-serif;
   font-size: 14px;
   background: #212121;
   color: white;

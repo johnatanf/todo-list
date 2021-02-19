@@ -7,7 +7,7 @@ const StyledCardHeading = styled.div`
   width: 100%;
   background: #212121;
   color: white;
-  font-family: Concert One;
+  font-family: Concert One, Open Sans, sans-serif;
   font-size: 2em;
   height: 2em;
   padding-left: 25px;

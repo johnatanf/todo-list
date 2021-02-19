@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledInput = styled.input`
   width: 100%;
-  font-family: Concert One;
+  font-family: Open Sans, sans-serif;
   font-size: 16px;
   padding: 25px;
   border: 0;
@@ -20,10 +20,6 @@ const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
   const placeholders = [
     'Do the groceries...',
-    'Walk the dog...',
-    'Wash the dishes...',
-    'Water the plants...',
-    'Replace lightbulb...'
   ]
   
   return (

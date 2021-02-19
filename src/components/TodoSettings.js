@@ -7,7 +7,7 @@ const StyledTodoSettings = styled.div`
 `
 
 const StyledPriorityMenu = styled.select`
-  font-family: Concert One;
+  font-family: Open Sans, sans-serif;
   background: transparent;
   border: 0;
   font-size: 16px;
@@ -22,7 +22,7 @@ const StyledPriorityMenu = styled.select`
 
 const StyledTime = styled.input`
   background: transparent;  
-  font-family: Concert One;
+  font-family: Open Sans, sans-serif;
   font-size: 16px; 
   border: 0;
   position: relative;

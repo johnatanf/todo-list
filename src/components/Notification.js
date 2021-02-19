@@ -10,13 +10,12 @@ const StyledContainer = styled.div`
 
 const StyledNotification = styled.div`
   width: 50%;
-  min-width: 160px;
-  max-width: 250px;
+  width: 250px;
   padding: 10px 0;
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   text-align: center;
-  font-family: Concert One;
+  font-family: Concert One, Open Sans, sans-serif;
   font-size: 14px;
   background: white;
 `

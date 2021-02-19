@@ -5,15 +5,15 @@ const StyledFilter = styled.div`
   padding: 10px 25px;
   display: flex;
   flex-direction: reverse-column;
-  font-family: Concert One;
+  align-items: center;
+  font-family: Open Sans, sans-serif;
   background: #d9d9d9;
 `
 
 const StyledSortMenu = styled.select`
   position: relative; 
   left: 10px;
-  bottom: 3px;
-  font-family: Concert One;
+  font-family: Open Sans, sans-serif;
   background: transparent;
   border: 0;
   font-size: 16px;

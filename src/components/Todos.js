@@ -30,7 +30,7 @@ const StyledList = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Concert One;
+  font-family: Arial;
   font-size: 16px;
   padding: 20px;
   border-top: 1px solid black;
