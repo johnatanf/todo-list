@@ -18,16 +18,12 @@ const StyledInput = styled.input`
 
 const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
-  const placeholders = [
-    'Do the groceries...',
-  ]
-  
   return (
     <form onSubmit={handleTodoSubmit}>
       <StyledInput 
         name='todoInput'
         value={todoInput}
-        placeholder={placeholders[Math.floor(Math.random() * placeholders.length)]}
+        placeholder='Enter task here...'
         onChange={event => setTodoInput(event.target.value)}
         autoComplete='off'
       />
