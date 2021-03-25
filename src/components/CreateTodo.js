@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const StyledForm = styled.form`
+  display: flex;
+  border-bottom: 1px solid black;
+`
+
 const StyledInput = styled.input`
-  width: 100%;
+  flex: 1;
   font-family: Open Sans, sans-serif;
   font-size: 16px;
   padding: 25px;
   border: 0;
-  border-bottom: 1px solid black;
   height: 50px;
   box-sizing: border-box;
 
@@ -16,10 +20,30 @@ const StyledInput = styled.input`
   }
 `
 
+const StyledButton = styled.button`
+  flex: 0 0 50px;
+  border-radius: 0;
+  border: 0;
+  font-size: 32px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #296d98;
+  color: white;
+  cursor: pointer;
+  transition: background-color .1s;
+
+  &:hover {
+    background-color: #1c4966;
+  }
+
+  &:active {
+    background-color: #296d98;
+  }
+`
+
 const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
   
   return (
-    <form onSubmit={handleTodoSubmit}>
+    <StyledForm onSubmit={handleTodoSubmit}>
       <StyledInput 
         name='todoInput'
         value={todoInput}
@@ -27,7 +51,8 @@ const CreateTodo = ({ todoInput, setTodoInput, handleTodoSubmit }) => {
         onChange={event => setTodoInput(event.target.value)}
         autoComplete='off'
       />
-    </form>
+      <StyledButton type="submit">+</StyledButton>
+    </StyledForm>
   )
 }
 
