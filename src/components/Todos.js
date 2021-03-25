@@ -52,8 +52,11 @@ const StyledTask = styled.span`
 `
 
 const StyledIconContainer = styled.div`
+  display: flex;
   flex: 1 1 7%;
   align-self: stretch;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
   cursor: pointer;
@@ -83,6 +86,7 @@ const StyledIcon = styled(IcomoonReact)`
   fill: #333;
   position: relative;
   z-index: 3;
+  width: 60%;
 `
 
 const Todo = (props) => {
