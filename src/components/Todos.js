@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import TodoSettings from './TodoSettings'
 import styled, { keyframes, css } from 'styled-components'
 import { Transition } from 'react-transition-group'
+import iconSet from "../img/selection.json";
+import IcomoonReact, { iconList } from "icomoon-react";
 
 const todoColourFade = keyframes`
   from {
@@ -13,19 +15,8 @@ const todoColourFade = keyframes`
   }
 `
 
-const trashColourFade = keyframes`
-  from {
-    color: black;
-  }
-
-  to {
-    color: red;
-  }
-`
-
 const StyledList = styled.li`
   margin: 0 auto;
-  padding: 0;
   list-style-type: none;
   display: flex;
   justify-content: space-between;
@@ -55,15 +46,43 @@ const StyledListAnimation = styled(StyledList)`
 `
 
 const StyledTask = styled.span`
-  width: 50%;
+  flex: 1 1 50%;
   word-wrap: break-word;
   text-decoration: ${props => props.todo.completed ? 'line-through' : ''}
 `
 
-const StyledDelete = styled.i`
-  &:hover {
-    animation: ${trashColourFade} 0.1s forwards;
+const StyledIconContainer = styled.div`
+  flex: 1 1 7%;
+  align-self: stretch;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    bottom: -20px;
+    left: -20px;
+    right: -21px;
+    transition: background-color .2s;
   }
+
+  &:hover {
+    ::before {
+      background-color: red;
+    }
+
+    .icon {
+      fill: white;
+    }
+  }
+`
+
+const StyledIcon = styled(IcomoonReact)`
+  fill: #333;
+  position: relative;
+  z-index: 3;
 `
 
 const Todo = (props) => {
@@ -87,8 +106,9 @@ const Todo = (props) => {
           />
           <StyledTask todo={props.todo}>{props.todo.task}</StyledTask>
           <TodoSettings todo={props.todo} handlePriorityChange={props.handlePriorityChange} handleDueDateChange={props.handleDueDateChange} />
-          <StyledDelete className="fas fa-trash-alt" onClick={() => props.handleTodoDelete(props.todo.id)}>
-          </StyledDelete>
+          <StyledIconContainer onClick={() => props.handleTodoDelete(props.todo.id)}>
+            <StyledIcon className="icon" iconSet={iconSet} icon="bin"></StyledIcon>
+          </StyledIconContainer>
         </StyledListAnimation>
       )}
     </Transition>

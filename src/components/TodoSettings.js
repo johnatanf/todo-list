@@ -24,6 +24,7 @@ const StyledTime = styled.input`
   background: transparent;  
   font-family: Open Sans, sans-serif;
   font-size: 16px; 
+  width: 100px;
   border: 0;
   position: relative;
   margin-top: 5px;
