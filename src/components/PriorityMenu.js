@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StyledMenuContainer = styled.div`
+  position: absolute;
+  width: 150px;
+  left: -130px;
+`
+
 const StyledMenu = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
   background-color: white;
-  position: absolute;
-  right: 25px;
   width: 125px;
   z-index: 100;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, .7);
@@ -52,20 +56,22 @@ const StyledOption = styled.li`
 
 const PriorityMenu = ({ todo, handlePriorityChange }) => {
   return (
-    <StyledMenu className="styled-menu">
-      <StyledOption onClick={() => handlePriorityChange(todo.id, 'high priority')}>
-        <span className="icon high">!!!</span>
-        <span>high</span>
-      </StyledOption>
-      <StyledOption onClick={() => handlePriorityChange(todo.id, 'medium priority')}>
-        <span className="icon medium">!!</span>
-        <span>medium</span>
-      </StyledOption>
-      <StyledOption onClick={() => handlePriorityChange(todo.id, 'low priority')}>
-        <span className="icon low">!</span>
-        <span>low</span>
-      </StyledOption>
-    </StyledMenu>
+    <StyledMenuContainer className="styled-menu-container">
+      <StyledMenu className="styled-menu">
+        <StyledOption onClick={() => handlePriorityChange(todo.id, 'high priority')}>
+          <span className="icon high">!!!</span>
+          <span>high</span>
+        </StyledOption>
+        <StyledOption onClick={() => handlePriorityChange(todo.id, 'medium priority')}>
+          <span className="icon medium">!!</span>
+          <span>medium</span>
+        </StyledOption>
+        <StyledOption onClick={() => handlePriorityChange(todo.id, 'low priority')}>
+          <span className="icon low">!</span>
+          <span>low</span>
+        </StyledOption>
+      </StyledMenu>
+    </StyledMenuContainer>
   )
 }
 

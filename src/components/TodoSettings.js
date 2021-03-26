@@ -52,7 +52,7 @@ const StyledCheckbox = styled.input`
   }
 `
 
-const StyledPriorityButton = styled.label`
+const StyledPriorityButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,8 +73,12 @@ const StyledPriorityButton = styled.label`
     : ''
   };
 
-  .styled-menu {
+  .styled-menu-container {
     visibility: hidden;
+  }
+
+  &:hover .styled-menu-container {
+    visibility: visible;
   }
 `
 
@@ -82,8 +86,7 @@ const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
   
   return (
     <StyledTodoSettings>
-      <StyledCheckbox id={todo.id} type="radio" name="priority-checkbox"></StyledCheckbox>
-      <StyledPriorityButton htmlFor={todo.id} priority={todo.priority}>
+      <StyledPriorityButton priority={todo.priority}>
         <PriorityMenu todo={todo} handlePriorityChange={handlePriorityChange} />
           {
             todo.priority === 'high priority'
