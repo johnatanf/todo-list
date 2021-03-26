@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import PriorityMenu from './PriorityMenu';
 
 const StyledTodoSettings = styled.div`
   display: flex;
+  justify-content: space-around;
   flex: 1;
-  flex-direction: row;
 `
 
 const StyledPriorityMenu = styled.select`
@@ -27,7 +28,6 @@ const StyledTime = styled.input`
   width: 100px;
   border: 0;
   position: relative;
-  margin-top: 5px;
 
   &::-webkit-calendar-picker-indicator {
     font-size: 18px;
@@ -44,13 +44,25 @@ const StyledTime = styled.input`
   }
 `
 
-const StyledPriorityButton = styled.button`
-  margin: 0 auto;
+const StyledCheckbox = styled.input`
+  display: none;
+
+  &:checked ~ label .styled-menu {
+    visibility: visible;
+  }
+`
+
+const StyledPriorityButton = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  position: relative;
   font-family: 'Open Sans', sans-serif;
   font-weight: 800;
   font-size: 1.25rem;
   cursor: pointer;
-  flex: 0 0 36px;
+  
   color: ${({ priority }) => 
     priority === 'high priority'
     ? '#ff4d4d'
@@ -60,26 +72,28 @@ const StyledPriorityButton = styled.button`
     ? '#32a6a8'
     : ''
   };
+
+  .styled-menu {
+    visibility: hidden;
+  }
 `
 
 const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
+  
   return (
     <StyledTodoSettings>
-      <StyledPriorityButton priority={todo.priority}>
-        {
-          todo.priority === 'high priority'
-          ? '!!!'
-          : todo.priority === 'medium priority'
-          ? '!!'
-          : '!'
-        }
+      <StyledCheckbox id={todo.id} type="checkbox" name="priority-checkbox"></StyledCheckbox>
+      <StyledPriorityButton htmlFor={todo.id} priority={todo.priority}>
+        <PriorityMenu todo={todo} handlePriorityChange={handlePriorityChange} />
+          {
+            todo.priority === 'high priority'
+            ? '!!!'
+            : todo.priority === 'medium priority'
+            ? '!!'
+            : '!'
+          }
       </StyledPriorityButton>
       <StyledTime type='time' defaultValue={todo.dueDate} onChange={event => handleDueDateChange(todo.id, event.target.value)}/>
-      {/* <StyledPriorityMenu defaultValue={todo.priority} onChange={event => handlePriorityChange(todo.id, event.target.value)}>
-          <option value='high priority'>high</option>
-          <option value='medium priority'>medium</option>
-          <option value='low priority'>low</option>
-        </StyledPriorityMenu> */}
     </StyledTodoSettings>
   )
 }

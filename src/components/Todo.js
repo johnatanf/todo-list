@@ -22,6 +22,10 @@ const StyledList = styled.li`
   }
 `
 
+const StyledInput = styled.input`
+  margin: 0 .8rem 0 0;
+`
+
 const todoColourFade = keyframes`
   from {
     background-color: white;
@@ -33,7 +37,7 @@ const todoColourFade = keyframes`
 `
 
 const StyledTask = styled.span`
-  flex: 0 0 50%;
+  flex: 0 0 45%;
   word-wrap: break-word;
   text-decoration: ${props => props.todo.completed ? 'line-through' : ''}
 `
@@ -103,7 +107,7 @@ const Todo = (props) => {
     <Transition in={animateTodo} timeout={0}>
       {(state) => (
         <StyledListAnimation todo={props.todo} state={state}>
-          <input 
+          <StyledInput 
             type='checkbox' 
             onClick={() => props.toggleCompleted(props.todo.id)}
             defaultChecked={ props.todo.completed ? true : false } 
