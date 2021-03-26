@@ -33,14 +33,14 @@ const todoColourFade = keyframes`
 `
 
 const StyledTask = styled.span`
-  flex: 1 1 50%;
+  flex: 0 0 50%;
   word-wrap: break-word;
   text-decoration: ${props => props.todo.completed ? 'line-through' : ''}
 `
 
 const StyledIconContainer = styled.div`
   display: flex;
-  flex: 1 1 7%;
+  flex: 0 0 7%;
   align-self: stretch;
   align-items: center;
   justify-content: center;

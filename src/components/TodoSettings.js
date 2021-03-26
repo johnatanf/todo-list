@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 const StyledTodoSettings = styled.div`
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  flex-direction: row;
 `
 
 const StyledPriorityMenu = styled.select`
@@ -11,7 +12,6 @@ const StyledPriorityMenu = styled.select`
   background: transparent;
   border: 0;
   font-size: 16px;
-  margin-bottom: 6px;
   appearance: none;
   min-width: 75px;
 
@@ -44,8 +44,13 @@ const StyledTime = styled.input`
   }
 `
 
-const Exclamation = styled.i`
-  margin-right: 5px;
+const StyledPriorityButton = styled.button`
+  margin: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  cursor: pointer;
+  flex: 0 0 36px;
   color: ${({ priority }) => 
     priority === 'high priority'
     ? '#ff4d4d'
@@ -60,15 +65,21 @@ const Exclamation = styled.i`
 const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
   return (
     <StyledTodoSettings>
-      <div>
-        <Exclamation priority={todo.priority} className="fas fa-exclamation"></Exclamation>
-        <StyledPriorityMenu defaultValue={todo.priority} onChange={event => handlePriorityChange(todo.id, event.target.value)}>
+      <StyledPriorityButton priority={todo.priority}>
+        {
+          todo.priority === 'high priority'
+          ? '!!!'
+          : todo.priority === 'medium priority'
+          ? '!!'
+          : '!'
+        }
+      </StyledPriorityButton>
+      <StyledTime type='time' defaultValue={todo.dueDate} onChange={event => handleDueDateChange(todo.id, event.target.value)}/>
+      {/* <StyledPriorityMenu defaultValue={todo.priority} onChange={event => handlePriorityChange(todo.id, event.target.value)}>
           <option value='high priority'>high</option>
           <option value='medium priority'>medium</option>
           <option value='low priority'>low</option>
-        </StyledPriorityMenu>
-      </div>
-      <StyledTime type='time' defaultValue={todo.dueDate} onChange={event => handleDueDateChange(todo.id, event.target.value)}/>
+        </StyledPriorityMenu> */}
     </StyledTodoSettings>
   )
 }
