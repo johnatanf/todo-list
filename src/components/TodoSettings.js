@@ -8,19 +8,6 @@ const StyledTodoSettings = styled.div`
   flex: 1;
 `
 
-const StyledPriorityMenu = styled.select`
-  font-family: Open Sans, sans-serif;
-  background: transparent;
-  border: 0;
-  font-size: 16px;
-  appearance: none;
-  min-width: 75px;
-
-  &:focus {
-    outline: none;
-  }
-`
-
 const StyledTime = styled.input`
   background: transparent;  
   font-family: Open Sans, sans-serif;
@@ -41,14 +28,6 @@ const StyledTime = styled.input`
 
   &:focus {
     outline: none;
-  }
-`
-
-const StyledCheckbox = styled.input`
-  display: none;
-
-  &:checked ~ label .styled-menu {
-    visibility: visible;
   }
 `
 
