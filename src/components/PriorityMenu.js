@@ -54,15 +54,15 @@ const PriorityMenu = ({ todo, handlePriorityChange }) => {
   return (
     <StyledMenu className="styled-menu">
       <StyledOption onClick={() => handlePriorityChange(todo.id, 'high priority')}>
-        <span class="icon high">!!!</span>
+        <span className="icon high">!!!</span>
         <span>high</span>
       </StyledOption>
       <StyledOption onClick={() => handlePriorityChange(todo.id, 'medium priority')}>
-        <span class="icon medium">!!</span>
+        <span className="icon medium">!!</span>
         <span>medium</span>
       </StyledOption>
       <StyledOption onClick={() => handlePriorityChange(todo.id, 'low priority')}>
-        <span class="icon low">!</span>
+        <span className="icon low">!</span>
         <span>low</span>
       </StyledOption>
     </StyledMenu>

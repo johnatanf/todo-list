@@ -82,7 +82,7 @@ const TodoSettings = ({ todo, handlePriorityChange, handleDueDateChange }) => {
   
   return (
     <StyledTodoSettings>
-      <StyledCheckbox id={todo.id} type="checkbox" name="priority-checkbox"></StyledCheckbox>
+      <StyledCheckbox id={todo.id} type="radio" name="priority-checkbox"></StyledCheckbox>
       <StyledPriorityButton htmlFor={todo.id} priority={todo.priority}>
         <PriorityMenu todo={todo} handlePriorityChange={handlePriorityChange} />
           {
