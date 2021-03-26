@@ -7,7 +7,7 @@ const StyledMenu = styled.ul`
   list-style: none;
   background-color: white;
   position: absolute;
-  right: 30px;
+  right: 25px;
   width: 125px;
   z-index: 100;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, .7);
